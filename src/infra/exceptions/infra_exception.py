@@ -1,0 +1,2 @@
+class InfraException(Exception):
+    pass

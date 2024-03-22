@@ -1,0 +1,19 @@
+infra:
+  rdb:
+    writer_url: ${DATABASE_WRITER_URL:"postgresql+asyncpg://postgres:postgres@localhost:5432/postgres"}
+    reader_url: ${DATABASE_READER_URL:"postgresql+asyncpg://postgres:postgres@localhost:5432/postgres"}
+    echo: ${DATABASE_ECHO:true}
+  redis:
+    host: ${REDIS_HOST:"localhost"}
+    port: ${REDIS_PORT:6379}
+    db: ${REDIS_DB:0}
+core:
+  jwt:
+    secret_key: ${CORE_JWT_SECRET_KEY}
+    issuer: ${CORE_JWT_ISSUER}
+    access_token_lifetime: ${CORE_JWT_ACCESS_TOKEN_LIFETIME:3600}
+    refresh_token_lifetime: ${CORE_JWT_REFRESH_TOKEN_LIFETIME:2592000}
+systems:
+  notification_push_api:
+    base_url: ${SYSTEMS_NOTIFICATION_PUSH_API_BASE_URL:"http://localhost:8081"}
+    secret_key: ${SYSTEMS_NOTIFICATION_PUSH_API_SECRET_KEY:"push_api_secret_key"}
