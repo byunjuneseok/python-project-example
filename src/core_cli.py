@@ -7,8 +7,12 @@ def create_app() -> AsyncTyper:
     app = AsyncTyper()
     container = MainContainer()
 
-    app.add_event_handler("startup", container.infra().redis_async_pool_manager().init_redis_pool)
-    app.add_event_handler("shutdown", container.infra().redis_async_pool_manager().close_redis_pool)
+    app.add_event_handler(
+        "startup", container.infra().redis_async_pool_manager().init_redis_pool
+    )
+    app.add_event_handler(
+        "shutdown", container.infra().redis_async_pool_manager().close_redis_pool
+    )
 
     @app.command()
     def check_dependencies():
@@ -30,7 +34,9 @@ if __name__ == "__main__":
         create_app().__call__()
     except Exception as e:
         payload = getattr(e, "__typer_developer_exception__")
-        delattr(e, "__typer_developer_exception__")  # This cause missing exception in sentry. =/
+        delattr(
+            e, "__typer_developer_exception__"
+        )  # This cause missing exception in sentry. =/
         # sentry_sdk.capture_exception(e)
         setattr(e, "__typer_developer_exception__", payload)
         raise e

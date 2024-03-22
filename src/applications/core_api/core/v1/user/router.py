@@ -3,7 +3,9 @@ from fastapi import APIRouter, Depends
 
 from applications.base.auth.auth import Auth
 from applications.base.auth.dependencies import auth_user_api
-from applications.core_api.core.v1.user.requests.create_user_request import CreateUserRequest
+from applications.core_api.core.v1.user.requests.create_user_request import (
+    CreateUserRequest,
+)
 from domains.user.models.user import User
 from domains.user.services.user_service import UserService
 

@@ -21,7 +21,9 @@ class UserMyService:
                 phone=user.phone,
             )
         else:
-            raise NotFoundException(code="USER_DOES_NOT_EXIST", message="해당 유저가 존재하지 않습니다.")
+            raise NotFoundException(
+                code="USER_DOES_NOT_EXIST", message="해당 유저가 존재하지 않습니다."
+            )
 
     async def get_me_copy(self, user_id: int) -> User | None:
         session = self.user_repository.session
@@ -36,4 +38,6 @@ class UserMyService:
                 phone=user.phone,
             )
         else:
-            raise NotFoundException(code="USER_DOES_NOT_EXIST", message="해당 유저가 존재하지 않습니다.")
+            raise NotFoundException(
+                code="USER_DOES_NOT_EXIST", message="해당 유저가 존재하지 않습니다."
+            )

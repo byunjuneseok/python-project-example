@@ -15,10 +15,14 @@ def alias_generator(string: str) -> str:
 
     string = string[first_alphabetic_character_index:]
 
-    titled_string_generator = (character for character in string.title() if character.isalnum())
+    titled_string_generator = (
+        character for character in string.title() if character.isalnum()
+    )
 
     try:
-        return next(titled_string_generator).lower() + empty.join(titled_string_generator)
+        return next(titled_string_generator).lower() + empty.join(
+            titled_string_generator
+        )
 
     except StopIteration:
         return empty

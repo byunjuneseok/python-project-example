@@ -15,5 +15,7 @@ class CoreContainer(containers.DeclarativeContainer):
         access_token_lifetime=config.jwt.access_token_lifetime,
         refresh_token_lifetime=config.jwt.refresh_token_lifetime,
     )
-    password_context = providers.Singleton(CryptContext, schemes=["bcrypt"], deprecated="auto")
+    password_context = providers.Singleton(
+        CryptContext, schemes=["bcrypt"], deprecated="auto"
+    )
     password_handler = providers.Factory(PasswordHandler, context=password_context)

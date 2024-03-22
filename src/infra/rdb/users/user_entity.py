@@ -8,6 +8,10 @@ class UserEntity(BaseEntity):
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
-    username: Mapped[str] = mapped_column(String(250), nullable=False, index=True, unique=True)
+    username: Mapped[str] = mapped_column(
+        String(250), nullable=False, index=True, unique=True
+    )
     password: Mapped[str] = mapped_column(String(250), nullable=False)
-    phone: Mapped[str] = mapped_column(String(250), nullable=False, index=True, unique=True)
+    phone: Mapped[str] = mapped_column(
+        String(250), nullable=False, index=True, unique=True
+    )

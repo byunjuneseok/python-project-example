@@ -13,12 +13,18 @@ def tz_aware_utc_now():
 class BaseEntity(Base):
     __abstract__ = True
 
-    created_at: Mapped[datetime] = mapped_column(AwareDatetime, nullable=False, default=tz_aware_utc_now)
+    created_at: Mapped[datetime] = mapped_column(
+        AwareDatetime, nullable=False, default=tz_aware_utc_now
+    )
     updated_at: Mapped[datetime] = mapped_column(
         AwareDatetime,
         nullable=False,
         default=tz_aware_utc_now,
         onupdate=tz_aware_utc_now,
     )
-    deleted_at: Mapped[datetime | None] = mapped_column(AwareDatetime, nullable=True, default=None)
-    is_deleted: Mapped[bool] = mapped_column(nullable=False, default=False, server_default="0")
+    deleted_at: Mapped[datetime | None] = mapped_column(
+        AwareDatetime, nullable=True, default=None
+    )
+    is_deleted: Mapped[bool] = mapped_column(
+        nullable=False, default=False, server_default="0"
+    )

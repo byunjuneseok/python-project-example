@@ -10,7 +10,9 @@ from applications.base.exceptions.handlers import (
     too_many_requests_handler,
     unauthorized_handler,
 )
-from applications.base.middlewares.async_session_middleware import AsyncSessionMiddleware
+from applications.base.middlewares.async_session_middleware import (
+    AsyncSessionMiddleware,
+)
 from applications.base.middlewares.cors import create_cors_middleware
 from applications.core_api.core.main import router as main_router
 from applications.core_api.settings import Settings
@@ -50,10 +52,14 @@ def create_app():
     app.add_exception_handler(TooManyRequestsException, too_many_requests_handler)
 
     # startup events
-    app.add_event_handler("startup", container.infra().redis_async_pool_manager().init_redis_pool)
+    app.add_event_handler(
+        "startup", container.infra().redis_async_pool_manager().init_redis_pool
+    )
 
     # shutdown events
-    app.add_event_handler("shutdown", container.infra().redis_async_pool_manager().close_redis_pool)
+    app.add_event_handler(
+        "shutdown", container.infra().redis_async_pool_manager().close_redis_pool
+    )
 
     @app.get("/system/liveness")
     def live():

@@ -20,10 +20,14 @@ class RetryOnStaleDataError:
         self.max_retries = max_retries
         self.retry_interval = retry_interval
         self.retry_exponential_backoff = retry_exponential_backoff
-        self.exception_for_max_retries_exceeded = exception_for_max_retries_exceeded or self.MaxRetriesExceeded
+        self.exception_for_max_retries_exceeded = (
+            exception_for_max_retries_exceeded or self.MaxRetriesExceeded
+        )
 
     @inject
-    def _get_session(self, session: async_scoped_session = Provide["db.provided.session"]):
+    def _get_session(
+        self, session: async_scoped_session = Provide["db.provided.session"]
+    ):
         return session
 
     def __call__(self, async_func):
@@ -37,7 +41,9 @@ class RetryOnStaleDataError:
                         raise self.exception_for_max_retries_exceeded from e
                     if self.retry_interval:
                         interval = (
-                            self.retry_interval * (2**i) if self.retry_exponential_backoff else self.retry_interval
+                            self.retry_interval * (2**i)
+                            if self.retry_exponential_backoff
+                            else self.retry_interval
                         )
                         await asyncio.sleep(interval)
                     await self._get_session().rollback()

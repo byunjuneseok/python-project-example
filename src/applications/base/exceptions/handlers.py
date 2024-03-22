@@ -9,7 +9,9 @@ from contexts.rate_limit.exceptions import TooManyRequestsException
 from cores.exceptions.exceptions.base_service_exception import BaseServiceException
 
 
-async def base_handler(request: Request, exc: BaseServiceException, status_code: int) -> Response:
+async def base_handler(
+    request: Request, exc: BaseServiceException, status_code: int
+) -> Response:
     return JSONResponse(
         status_code=status_code,
         content={"code": exc.code, "message": exc.message},
@@ -22,7 +24,9 @@ forbidden_handler = partial(base_handler, status_code=403)
 not_found_handler = partial(base_handler, status_code=404)
 
 
-async def request_validation_error_handler(request: Request, exc: RequestValidationError) -> Response:
+async def request_validation_error_handler(
+    request: Request, exc: RequestValidationError
+) -> Response:
     errors = exc.errors()
     assertion_messages = ""
 
@@ -54,7 +58,9 @@ async def request_validation_error_handler(request: Request, exc: RequestValidat
     )
 
 
-async def too_many_requests_handler(request: Request, exc: TooManyRequestsException) -> Response:
+async def too_many_requests_handler(
+    request: Request, exc: TooManyRequestsException
+) -> Response:
     return JSONResponse(
         status_code=status.HTTP_429_TOO_MANY_REQUESTS,
         content={

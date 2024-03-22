@@ -9,7 +9,9 @@ from domains.user.services.user_service import UserService
 
 class MainContainer(containers.DeclarativeContainer):
     # configurations
-    wiring_config = containers.WiringConfiguration(packages=["applications", "contexts"])
+    wiring_config = containers.WiringConfiguration(
+        packages=["applications", "contexts"]
+    )
     config = providers.Configuration(yaml_files=["config.yml"])
 
     core = providers.Container(CoreContainer, config=config.core)

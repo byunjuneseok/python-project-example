@@ -9,7 +9,9 @@ class ErrorResponseDescription(BaseModel):
     description: str
 
 
-def generate_docs_error_responses(responses: list[ErrorResponseDescription], description: str | None = None) -> dict:
+def generate_docs_error_responses(
+    responses: list[ErrorResponseDescription], description: str | None = None
+) -> dict:
     content = """
 | code | message | description |
 | ---- | ------- | ----------- |
@@ -17,5 +19,7 @@ def generate_docs_error_responses(responses: list[ErrorResponseDescription], des
     if description:
         content = description + "\n" + content
     for response in responses:
-        content += f"| `{response.code}` | {response.message} | {response.description} |\n"
+        content += (
+            f"| `{response.code}` | {response.message} | {response.description} |\n"
+        )
     return dict(description=content, model=ErrorResponse)

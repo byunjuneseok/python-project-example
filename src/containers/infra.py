@@ -1,6 +1,13 @@
 import boto3
 from dependency_injector.containers import DeclarativeContainer
-from dependency_injector.providers import Callable, Configuration, Factory, Provider, Resource, Singleton
+from dependency_injector.providers import (
+    Callable,
+    Configuration,
+    Factory,
+    Provider,
+    Resource,
+    Singleton,
+)
 from redis.asyncio import Redis
 
 from infra.rdb.engine import AsyncDatabase
@@ -27,7 +34,9 @@ class InfraContainer(DeclarativeContainer):
         port=config.redis.port,
         db=config.redis.db,
     )
-    redis_async: Provider[Redis] = Callable(redis_async_pool_manager.provided.async_client)
+    redis_async: Provider[Redis] = Callable(
+        redis_async_pool_manager.provided.async_client
+    )
 
     # AWS Layer.
     boto3_session = Resource(boto3.session.Session)

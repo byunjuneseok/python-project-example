@@ -14,7 +14,9 @@ class TransactionalTaskGroup(TaskGroup):
         super().__init__(**kwargs)
 
     @inject
-    def _get_session(self, session: async_scoped_session = Provide["db.provided.session"]):
+    def _get_session(
+        self, session: async_scoped_session = Provide["db.provided.session"]
+    ):
         return session
 
     def _get_session_by_task(self) -> AsyncSession | None:

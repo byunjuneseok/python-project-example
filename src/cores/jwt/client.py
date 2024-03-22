@@ -34,7 +34,9 @@ class JWT:
 
     def _decode(self, token: str, scope_to_verify: str) -> DecodeResult:
         try:
-            payload = jwt.decode(token, key=self.secret_key, algorithms=[self.algorithm])
+            payload = jwt.decode(
+                token, key=self.secret_key, algorithms=[self.algorithm]
+            )
         except jwt.ExpiredSignatureError:
             raise JwtExpiredSignatureException("유효기간이 지난 토큰입니다.")
         except jwt.InvalidIssuerError:
@@ -51,7 +53,9 @@ class JWT:
             raise JwtDecodeException("유효하지 않은 토큰입니다.")
         return payload
 
-    def _encode(self, user_id: str, role: str, scopes: List[str], lifetime: int) -> Token:
+    def _encode(
+        self, user_id: str, role: str, scopes: List[str], lifetime: int
+    ) -> Token:
         payload = {
             "sub": f"{role}:{user_id}",
             "exp": datetime.utcnow() + timedelta(seconds=lifetime),
@@ -59,7 +63,9 @@ class JWT:
             "iss": self.issuer,
             "scope": ",".join(scopes),
         }
-        token = jwt.encode(payload=payload, key=self.secret_key, algorithm=self.algorithm)
+        token = jwt.encode(
+            payload=payload, key=self.secret_key, algorithm=self.algorithm
+        )
         return Token(
             token=token,
             expires_in=int(payload["exp"].timestamp()),
