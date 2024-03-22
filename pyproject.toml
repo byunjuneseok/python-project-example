@@ -23,6 +23,7 @@ pydantic-extra-types = "^2.6.0"
 pydantic-settings = "^2.2.1"
 phonenumbers = "^8.13.32"
 greenlet = "^3.0.3"
+async-typer = "^0.1.8"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.4"

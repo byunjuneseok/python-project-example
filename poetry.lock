@@ -61,6 +61,20 @@ files = [
 ]
 
 [[package]]
+name = "async-typer"
+version = "0.1.8"
+description = ""
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "async_typer-0.1.8-py3-none-any.whl", hash = "sha256:a16d19e9519aee38541321a30a40a9c3c10d46465cc475519a0818a26dead3c5"},
+    {file = "async_typer-0.1.8.tar.gz", hash = "sha256:315897613e37628587848cb99d1098b9dada662c61973553d9db7ae4c17f3a48"},
+]
+
+[package.dependencies]
+typer = ">=0.9.0,<0.10.0"
+
+[[package]]
 name = "black"
 version = "24.3.0"
 description = "The uncompromising code formatter."
@@ -923,6 +937,27 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
 [[package]]
+name = "typer"
+version = "0.9.0"
+description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "typer-0.9.0-py3-none-any.whl", hash = "sha256:5d96d986a21493606a358cae4461bd8cdf83cbf33a5aa950ae629ca3b51467ee"},
+    {file = "typer-0.9.0.tar.gz", hash = "sha256:50922fd79aea2f4751a8e0408ff10d2662bd0c8bbfa84755a699f3bada2978b2"},
+]
+
+[package.dependencies]
+click = ">=7.1.1,<9.0.0"
+typing-extensions = ">=3.7.4.3"
+
+[package.extras]
+all = ["colorama (>=0.4.3,<0.5.0)", "rich (>=10.11.0,<14.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
+dev = ["autoflake (>=1.3.1,<2.0.0)", "flake8 (>=3.8.3,<4.0.0)", "pre-commit (>=2.17.0,<3.0.0)"]
+doc = ["cairosvg (>=2.5.2,<3.0.0)", "mdx-include (>=1.4.1,<2.0.0)", "mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=8.1.4,<9.0.0)", "pillow (>=9.3.0,<10.0.0)"]
+test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.0.0)", "mypy (==0.910)", "pytest (>=4.4.0,<8.0.0)", "pytest-cov (>=2.10.0,<5.0.0)", "pytest-sugar (>=0.9.4,<0.10.0)", "pytest-xdist (>=1.32.0,<4.0.0)", "rich (>=10.11.0,<14.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.10.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -971,4 +1006,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "39f7de8442b1f20564f884dc73a912605c92518d2587d09a4e089a2fd733d810"
+content-hash = "1f257e333e09095a1a96ed0c4e47dfe386f0049ced8a7e47c6623225126f002c"
